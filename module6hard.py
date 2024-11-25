@@ -4,7 +4,7 @@ class Figure:
     def __init__(self, color=(0, 0, 0), *sides):
         self.__sides = []
         self.__color = list(color)
-        self.filled = False  # публичный атрибут, указывает, закрашена ли фигура
+        self.filled = False 
 
         self.set_sides(*sides)
 
@@ -36,7 +36,7 @@ class Circle(Figure):
 
     def __init__(self, color=(0, 0, 0), *sides):
         super().__init__(color, *sides)
-        self.__radius = self.get_sides()[0] / (2 * math.pi) if self.get_sides() else 1  # радиус из длины окружности 
+        self.__radius = self.get_sides()[0] / (2 * math.pi) if self.get_sides() else 1 
         self.set_sides(1)
 
     def get_square(self):
@@ -47,7 +47,7 @@ class Triangle(Figure):
 
     def __init__(self, color=(0, 0, 0), *sides):
         super().__init__(color, *sides)
-        self.set_sides(1, 1, 1)  # начальные стороны, если не переданы другие
+        self.set_sides(1, 1, 1) 
 
     def get_square(self):
         s = sum(self.get_sides()) / 2
@@ -60,34 +60,30 @@ class Cube(Figure):
     def __init__(self, color=(0, 0, 0), *sides):
         super().__init__(color, *sides)
         if sides:
-            self.set_sides(*([sides[0]] * 12))  # устанавливаем все 12 сторон равными
+            self.set_sides(*([sides[0]] * 12))  
         else:
-            self.set_sides(*([1] * 12))  # по умолчанию ставим 1
+            self.set_sides(*([1] * 12))
 
     def get_volume(self):
-        side = self.get_sides()[0]  # все стороны одинаковы
+        side = self.get_sides()[0] 
         return side ** 3
 
-# Пример проверки:
+
 circle1 = Circle((200, 200, 100), 10)
 cube1 = Cube((222, 35, 130), 6)
 
-# Проверка на изменение цветов:
-circle1.set_color(55, 66, 77)  # Изменится
-print(circle1.get_color())  # [55, 66, 77]
+circle1.set_color(55, 66, 77) 
+print(circle1.get_color()) 
 
-cube1.set_color(300, 70, 15)  # Не изменится
-print(cube1.get_color())  # [222, 35, 130]
+cube1.set_color(300, 70, 15)  
+print(cube1.get_color()) 
 
-# Проверка на изменение сторон:
-cube1.set_sides(5, 3, 12, 4, 5)  # Не изменится
-print(cube1.get_sides())  # [6, 6, 6, ..., 6]
+cube1.set_sides(5, 3, 12, 4, 5) 
+print(cube1.get_sides())  
 
-circle1.set_sides(15)  # Изменится
-print(circle1.get_sides())  # [1]
+circle1.set_sides(15) 
+print(circle1.get_sides())  
 
-# Проверка периметра (круга), это и есть длина:
-print(len(circle1))  # 1
+print(len(circle1))  
 
-# Проверка объёма (куба):
-print(cube1.get_volume())  # 216
+print(cube1.get_volume()) 
